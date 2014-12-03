@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="match_parent"
+      android:layout_height="match_parent">
+<LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+    
+   <EditText
+            android:id="@+id/notes"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:hint="@string/notes"
+            android:layout_weight="4"
+             />
+   <LinearLayout 
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal"
+         android:layout_weight="1">
+        <EditText  android:text="" 
+                   android:minWidth="20dip" 
+                   android:id="@+id/textView1" 
+                   android:layout_height="wrap_content" 
+                   android:layout_width="wrap_content" 
+                   android:width="150dip" 
+                   android:height="40dip"
+                   android:editable="false">
+        </EditText>
+        <Button android:text="Calendar" 
+                android:layout_width="wrap_content" 
+                android:id="@+id/button1" 
+                android:layout_height="wrap_content" 
+                android:height="40dip"
+                android:onClick="displayDatePicker"></Button>
+        
+   </LinearLayout>
+   <LinearLayout 
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal"
+         android:layout_weight="1">
+       <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/time"
+            android:layout_gravity="center"
+            android:textSize="20sp" />
+        <TimePicker
+            android:id="@+id/TimeTextBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+            
+   </LinearLayout>
+          
+       <CheckBox android:id="@+id/chkschedulesms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_schedulesms"
+         android:layout_weight="0"
+         android:gravity="center"
+         android:layout_marginLeft="40sp"
+         android:textStyle="bold|italic"
+         android:onClick="SMSDialogue"/>
+      
+        
+        <LinearLayout 
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal"
+         android:layout_weight="0">
+        
+       <Button
+            android:id="@+id/saveReminder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/setReminder"
+            android:onClick="saveReminder"
+            android:layout_gravity="center"/>
+        
+        <Button
+            android:id="@+id/cancelReminder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cancelReminder"
+            android:onClick="cancelReminder"
+            android:layout_gravity="center"
+         /> 
+        
+         </LinearLayout> 
+  
+   
+</LinearLayout>
+  </ScrollView>

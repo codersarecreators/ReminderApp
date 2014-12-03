@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Reminder</string>
+    <string name="action_settings">Settings</string>
+    <string name="headerText">Reminders</string>
+    <string name="app_reminder">Add Reminder</string>
+    <string name="notes">Remind notes</string>
+    <string name="date">Date</string>
+    <string name="setDate">11/10/2014</string>
+    <string name="time">Time</string>
+	<string name="text_schedulesms">Schedule SMS</string>
+	<string name="setReminder">Set</string>
+	<string name="cancelReminder">Cancel</string>
+	<string name="Contacts">Select Contact</string>
+</resources>
