@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
@@ -14,12 +15,15 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
+	private static Context contextObj = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
+        //set the contextObj
         //Populate list view with Reminders
+        contextObj = this;
         ListView listView = (ListView) findViewById(R.id.listView);
         ArrayList<String> reminderList = new ArrayList<String>();
         reminderList.add("Fill Petrol");
@@ -33,6 +37,11 @@ public class MainActivity extends Activity {
     }
 
 
+    //GetContext Method
+    public static Context GetContext()
+    {
+    	return contextObj;
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
