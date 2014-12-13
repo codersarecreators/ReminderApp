@@ -70,6 +70,7 @@
              android:layout_marginTop="30sp"
             android:layout_marginLeft="30sp"
             android:layout_marginRight="30sp"
+            android:onClick="deleteReminder"
           
                />
            <!--  android:onClick="saveExpense" -->

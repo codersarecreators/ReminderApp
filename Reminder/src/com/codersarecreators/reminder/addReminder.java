@@ -7,11 +7,13 @@ import android.app.Activity;
 import android.app.AlertDialog.Builder;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Contacts;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -20,7 +22,7 @@ import android.widget.Toast;
 public class addReminder extends Activity {
 	
 	 Button btn ;
-	 EditText   txtView;
+	 EditText txtView;
 	 String initialDate;
 	 private String initialMonth;
 	 private String initialYear;
@@ -32,6 +34,7 @@ public class addReminder extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.add_reminder);
 		
+		
 	}
 	
 	@Override
@@ -41,6 +44,7 @@ public class addReminder extends Activity {
         return true;
     }
 	
+	//Display date picker dialogue
 	@SuppressWarnings("deprecation")
 	public void displayDatePicker(View view){
 		Calendar calendar = null;
@@ -88,18 +92,23 @@ public class addReminder extends Activity {
 		final Dialog dialog = new Dialog(view.getContext());
 		dialog.setCancelable(true);
 		dialog.setTitle("Mobile Number");
-		dialog.setContentView(R.layout.dialog);
+		dialog.setContentView(R.layout.contacts_dialog);
+		Button selectContacts =(Button)dialog.findViewById(R.id.contacts);
+		selectContacts.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				Toast.makeText(v.getContext(), "Inside selectContacts",Toast.LENGTH_LONG ).show();
+
+			}
+			
+		});
 		
-		
+		  
 		dialog.show();
 	}
 	
-	public void selectContacts(View view){
-		Toast.makeText(view.getContext(), "Inside selectContacts",Toast.LENGTH_LONG ).show();
-		//Intent intent= new Intent(Intent.ACTION_PICK,  Contacts.CONTENT_URI);
-
-       // startActivityForResult(intent, PICK_CONTACT);
-	}
+	
 	
 	private class PickDate implements DatePickerDialog.OnDateSetListener {
 

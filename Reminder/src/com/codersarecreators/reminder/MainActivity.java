@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
@@ -17,16 +18,18 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+        //Populate list view with Reminders
         ListView listView = (ListView) findViewById(R.id.listView);
-        ArrayList<String> list = new ArrayList<String>();
-        list.add("Fill Petrol");
-        list.add("Wake up Sid :-)");
-        list.add("Prepare weekly report");
-        list.add("Today is cient call");
-        list.add("Bike Servicing");
+        ArrayList<String> reminderList = new ArrayList<String>();
+        reminderList.add("Fill Petrol");
+        reminderList.add("Wake up Sid :-)");
+        reminderList.add("Prepare weekly report");
+        reminderList.add("Today is cient call");
+        reminderList.add("Bike Servicing");
        
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1 , list);
-       listView.setAdapter(adapter);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1 , reminderList);
+        listView.setAdapter(adapter);
     }
 
 
@@ -37,16 +40,48 @@ public class MainActivity extends Activity {
         return true;
     }
     
+    // Function called when clicked on + sign 
     public void addReminder(View view){
+    	
+    	//Launches new Activity addReminder 
 		Intent intent = new Intent(this, addReminder.class);
 		startActivity(intent);
 		
 	}
-    public void selectContacts(View view){
-		Toast.makeText(view.getContext(), "Inside selectContacts",Toast.LENGTH_LONG ).show();
-		//Intent intent= new Intent(Intent.ACTION_PICK,  Contacts.CONTENT_URI);
+    
+   
+    //Function called when we click on -- sign
+    public void deleteReminder(View view){
+    	
+    	ArrayList<String> reminderlist = new ArrayList<String>();
+    	reminderlist.add("Fill Petrol");
+    	reminderlist.add("Wake up Sid :-)");
+    	reminderlist.add("Prepare weekly report");
+    	reminderlist.add("Today is cient call");
+    	reminderlist.add( "Bike Servicing");
+    	
+    	final Dialog dialog = new Dialog(this);
+    	View deleterminderpopup = getLayoutInflater().inflate(R.layout.deletereminderpopup, null);
+        ListView listview = (ListView) deleterminderpopup.findViewById(R.id.listView);
 
-       // startActivityForResult(intent, PICK_CONTACT);
-	}
+    	dialog.setCancelable(true);
+	
+		
+		CustomListAdapterDialog adapter = new
+		        CustomListAdapterDialog(deleterminderpopup.getContext(), reminderlist);
+		
+		listview.setAdapter(adapter);
+		        dialog.setContentView(deleterminderpopup);
+		        /*list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+		                @Override
+		                public void onItemClick(AdapterView<?> parent, View view,
+		                                        int position, long id) {
+		                    Toast.makeText(MainActivity.this, "You Clicked at " +web[+ position], Toast.LENGTH_SHORT).show();
+		                }
+		            });
+		  }*/
+		        
+		dialog.show();
+    }
 
 }
