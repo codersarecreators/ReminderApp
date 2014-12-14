@@ -1,6 +1,7 @@
 package com.codersarecreators.reminder;
 
 import android.content.Context;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -8,9 +9,10 @@ public class DatabaseGateway extends SQLiteOpenHelper {
 	
 	private static Context contextObj = MainActivity.GetContext();
 	private static String DB_NAME = "ReminderAppDb";
-	private static int DB_VERSION = 1;
+	private static int DB_VERSION = 8;
 	private static String TABLE_REMINDER = "TABLE_REMINDER";
 	private static String TABLE_MESSAGESERVICE = "TABLE_SMS";
+	private static String TABLE_REMINDER_MESSAGE_ASSOC = "RemSmsAssoc";
 	//the singleton object
 	private static DatabaseGateway dbGateWayObj = null;
 	private static SQLiteDatabase dbObj = null;
@@ -30,18 +32,61 @@ public class DatabaseGateway extends SQLiteOpenHelper {
 	}
 	
 	@Override
-	public void onCreate(SQLiteDatabase arg0) {
+	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub
 
 		/*
 		 * Refer to the tables' design and create the tables accordingly.
 		 */
+		String CreateTableForReminder = "CREATE TABLE " + TABLE_REMINDER
+				+ "("
+				+ "ReminderId TEXT NOT NULL,"
+				+ "Date TEXT NOT NULL,"
+				+ "Time TEXT NOT NULL,"
+				+ "Notes TEXT NOT NULL,"
+				+ "PRIMARY KEY(ReminderId)"
+				+ ")";
+		String CreateTableForSms = "CREATE TABLE " + TABLE_MESSAGESERVICE
+				+ "("
+				+ "SmsId TEXT NOT NULL,"
+				+ "Date TEXT NOT NULL,"
+				+ "Time TEXT NOT NULL,"
+				+ "MessageText TEXT NOT NULL,"
+				+ "PhoneNumber TEXT NOT NULL,"
+				+ "PRIMARY KEY(SmsId)"
+				+ ")";
+		String CreateTableForAssoc = "CREATE TABLE " + TABLE_REMINDER_MESSAGE_ASSOC
+				+ "("
+				+ "ReminderId TEXT NOT NULL,"
+				+ "SmsId TEXT NOT NULL,"
+				+ "FOREIGN KEY(ReminderId) REFERENCES " + TABLE_REMINDER + "(ReminderId),"
+				+ "FOREIGN KEY(SmsId) REFERENCES " + TABLE_MESSAGESERVICE + "(SmsId)"
+				+ ")";
+		try {
+			db.execSQL(CreateTableForReminder);
+			db.execSQL(CreateTableForSms);
+			db.execSQL(CreateTableForAssoc);
+			MyToast.RaiseToast("All tables created successfully");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			MyToast.RaiseToast("In OnCreate()");
+			e.printStackTrace();
+		}
 	}
 
 	@Override
-	public void onUpgrade(SQLiteDatabase arg0, int arg1, int arg2) {
+	public void onUpgrade(SQLiteDatabase db, int arg1, int arg2) {
 		// TODO Auto-generated method stub
-
+		try {
+			db.execSQL("DROP TABLE IF EXISTS " + TABLE_REMINDER_MESSAGE_ASSOC);
+			db.execSQL("DROP TABLE IF EXISTS " + TABLE_REMINDER);
+			db.execSQL("DROP TABLE IF EXISTS " + TABLE_MESSAGESERVICE);
+			MyToast.RaiseToast("In OnUpgrade()");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		onCreate(db);
 	}
 
 	public static DatabaseGateway GetDbGateWay()

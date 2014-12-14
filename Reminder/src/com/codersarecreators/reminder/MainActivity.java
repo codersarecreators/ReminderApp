@@ -32,6 +32,7 @@ public class MainActivity extends Activity {
        
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1 , reminderList);
         listView.setAdapter(adapter);
+        DatabaseGateway.GetDbGateWay();
     }
 
 
