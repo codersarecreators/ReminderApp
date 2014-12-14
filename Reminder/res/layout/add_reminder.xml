@@ -19,7 +19,17 @@
        android:layout_height="wrap_content"
        android:orientation="horizontal"
          android:layout_weight="1">
-        <EditText  android:text="" 
+       
+        <Button android:text="Date" 
+                android:layout_width="wrap_content" 
+                android:id="@+id/dateSelector" 
+                android:layout_height="wrap_content" 
+                android:height="40dip"
+                 android:background="@drawable/roundshapebtn"
+                android:onClick="displayDatePicker"
+                android:layout_margin="5dip"
+                ></Button>
+         <TextView  android:text="" 
                    android:minWidth="20dip" 
                    android:id="@+id/textView1" 
                    android:layout_height="wrap_content" 
@@ -27,21 +37,16 @@
                    android:width="150dip" 
                    android:height="40dip"
                    android:editable="false">
-        </EditText>
-        <Button android:text="Calendar" 
-                android:layout_width="wrap_content" 
-                android:id="@+id/button1" 
-                android:layout_height="wrap_content" 
-                android:height="40dip"
-                android:onClick="displayDatePicker"></Button>
+        </TextView>
         
    </LinearLayout>
+   
    <LinearLayout 
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:orientation="horizontal"
          android:layout_weight="1">
-       <TextView
+     <!--   <TextView
             android:id="@+id/time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -51,7 +56,24 @@
         <TimePicker
             android:id="@+id/TimeTextBox"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"/> -->
+             <Button android:text="Time" 
+                android:layout_width="wrap_content" 
+                android:id="@+id/timeSelector" 
+                android:layout_height="wrap_content" 
+                android:height="40dip"
+                android:background="@drawable/roundshapebtn"
+                android:layout_margin="5dip"
+                android:onClick="displayTimePicker"></Button>
+         <TextView  android:text="" 
+                   android:minWidth="20dip" 
+                   android:id="@+id/textView2" 
+                   android:layout_height="wrap_content" 
+                   android:layout_width="wrap_content" 
+                   android:width="150dip" 
+                   android:height="40dip"
+                   android:editable="false">
+        </TextView>
             
    </LinearLayout>
           
@@ -61,7 +83,7 @@
         android:text="@string/text_schedulesms"
          android:layout_weight="0"
          android:gravity="center"
-         android:layout_marginLeft="40sp"
+         android:layout_marginLeft="40dip"
          android:textStyle="bold|italic"
          android:onClick="SMSDialogue"/>
       
@@ -78,7 +100,9 @@
             android:layout_height="wrap_content"
             android:text="@string/setReminder"
             android:onClick="saveReminder"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:background="@drawable/functionalitybtnshape"
+            android:layout_margin="5dip"/>
         
         <Button
             android:id="@+id/cancelReminder"
@@ -87,6 +111,8 @@
             android:text="@string/cancelReminder"
             android:onClick="cancelReminder"
             android:layout_gravity="center"
+            android:background="@drawable/functionalitybtnshape"
+            android:layout_margin="5dip"
          /> 
         
          </LinearLayout> 
