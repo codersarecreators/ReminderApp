@@ -53,9 +53,9 @@
              android:gravity="center"
             android:layout_weight="1"
             android:minHeight="0dp"
-            android:layout_marginTop="30sp"
-             android:layout_marginLeft="30sp"
-            android:layout_marginRight="30sp"
+            android:layout_marginTop="30dip"
+             android:layout_marginLeft="30dip"
+            android:layout_marginRight="30dip"
             android:onClick="addReminder" />
 
         <Button
@@ -67,9 +67,9 @@
             android:layout_weight="1"
             android:minHeight="0dp"
             android:gravity="center"
-             android:layout_marginTop="30sp"
-            android:layout_marginLeft="30sp"
-            android:layout_marginRight="30sp"
+             android:layout_marginTop="30dip"
+            android:layout_marginLeft="30dip"
+            android:layout_marginRight="30dip"
             android:onClick="deleteReminder"
           
                />

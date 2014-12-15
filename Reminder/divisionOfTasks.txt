@@ -18,6 +18,7 @@
 
 1) Work on changing the UI
 
-	- think of a better color theme.
+	- think of a better color theme. -- Have implemented color scheme.
+                                         -- Worked on Schedule SMS   
 
 2) provide edit and delete functionality to the reminder details view, which we see when we click on any of the reminders on the list.

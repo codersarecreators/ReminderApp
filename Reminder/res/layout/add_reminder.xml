@@ -1,24 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-     android:layout_width="match_parent"
-      android:layout_height="match_parent">
-<LinearLayout 
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical" >
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="#3B5999" >
+<!-- <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:background="#3B5999"> -->
+
     
    <EditText
             android:id="@+id/notes"
             android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:hint="@string/notes"
-            android:layout_weight="4"
-             />
-   <LinearLayout 
+            android:layout_height="wrap_content"
+            android:lines="4"
+            android:textColor="#FDE8D7"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:hint="@string/notes" 
+            android:layout_margin="6dip"
+            android:layout_weight="1" 
+            android:typeface="monospace"  />
+            
+          <!--   android:layout_weight="3" -->
+            <LinearLayout 
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:orientation="horizontal"
-         android:layout_weight="1">
+       android:layout_margin="6dip"
+       android:layout_weight="1">
+         <!-- android:layout_weight="1" -->
        
         <Button android:text="Date" 
                 android:layout_width="wrap_content" 
@@ -28,15 +40,22 @@
                  android:background="@drawable/roundshapebtn"
                 android:onClick="displayDatePicker"
                 android:layout_margin="5dip"
+                 android:padding="5dip"
                 ></Button>
          <TextView  android:text="" 
                    android:minWidth="20dip" 
                    android:id="@+id/textView1" 
                    android:layout_height="wrap_content" 
                    android:layout_width="wrap_content" 
-                   android:width="150dip" 
-                   android:height="40dip"
-                   android:editable="false">
+                    android:layout_margin="5dip"
+                     android:textColor="#FDE8D7"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:typeface="serif">
+                 <!--   android:editable="false"> -->
+                 <!--   android:width="150dip" 
+                   android:height="40dip" -->
+                   
         </TextView>
         
    </LinearLayout>
@@ -45,7 +64,9 @@
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:orientation="horizontal"
-         android:layout_weight="1">
+       android:layout_margin="6dip"
+       android:layout_weight="1">
+         <!-- android:layout_weight="1"> -->
      <!--   <TextView
             android:id="@+id/time"
             android:layout_width="wrap_content"
@@ -64,35 +85,52 @@
                 android:height="40dip"
                 android:background="@drawable/roundshapebtn"
                 android:layout_margin="5dip"
+                 android:padding="5dip"
                 android:onClick="displayTimePicker"></Button>
          <TextView  android:text="" 
                    android:minWidth="20dip" 
                    android:id="@+id/textView2" 
                    android:layout_height="wrap_content" 
                    android:layout_width="wrap_content" 
-                   android:width="150dip" 
+                    android:layout_margin="5dip"
+                     android:textColor="#FDE8D7"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:typeface="serif">
+                  <!--  android:width="150dip" 
                    android:height="40dip"
-                   android:editable="false">
+                   
+                   android:editable="false"> -->
         </TextView>
             
    </LinearLayout>
-          
+       
        <CheckBox android:id="@+id/chkschedulesms"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/text_schedulesms"
-         android:layout_weight="0"
-         android:gravity="center"
-         android:layout_marginLeft="40dip"
+        android:layout_marginLeft="40dip"
          android:textStyle="bold|italic"
-         android:onClick="SMSDialogue"/>
-      
+          android:gravity="center"
+          android:layout_weight="1"         
+          />
+       <!--   android:layout_weight="0" -->
+        
+         
+         
+<!--          android:button="@drawable/your_check_drawable"
+ -->            
         
         <LinearLayout 
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:orientation="horizontal"
+        android:layout_gravity="bottom"
+         android:layout_margin="6dip"
          android:layout_weight="0">
+        <!--  android:layout_weight="0" -->
+        
+        
         
        <Button
             android:id="@+id/saveReminder"
@@ -102,7 +140,9 @@
             android:onClick="saveReminder"
             android:layout_gravity="center"
             android:background="@drawable/functionalitybtnshape"
-            android:layout_margin="5dip"/>
+            android:layout_margin="5dip"
+            android:padding="10dip"
+            android:layout_weight="1"/>
         
         <Button
             android:id="@+id/cancelReminder"
@@ -113,10 +153,12 @@
             android:layout_gravity="center"
             android:background="@drawable/functionalitybtnshape"
             android:layout_margin="5dip"
+             android:padding="10dip"
+             android:layout_weight="1"
          /> 
         
          </LinearLayout> 
   
    
 </LinearLayout>
-  </ScrollView>
+
