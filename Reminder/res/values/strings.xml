@@ -17,7 +17,7 @@
 	<string name="scheduleSMSDialogue_date">Date</string>
     <string name="scheduleSMSDialogue_time">Time</string>
     <string name="deleteReminderDialogue_delete">Delete</string>
-	<string name="deleteReminderDialogue_delete">Back</string>
+	<string name="deleteReminderDialogue_back">Back</string>
     
     
 </resources>
