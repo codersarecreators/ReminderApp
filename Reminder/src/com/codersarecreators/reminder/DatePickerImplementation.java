@@ -20,7 +20,6 @@ DatePickerDialog.OnDateSetListener {
 	private int currentDay;
 	public static TextView dateTextView;
 
-	// Constructor
 	public DatePickerImplementation() {
 
 	}
@@ -33,7 +32,7 @@ DatePickerDialog.OnDateSetListener {
 		// If a date already exists on screen it gets the date and parses it and
 		// displays that date on datepicker dialogue
 		String preExistingDate = (String) dateTextView.getText().toString();
-		if (null != preExistingDate && preExistingDate.equals("")) {
+		if (null != preExistingDate && !preExistingDate.equals("")) {
 			StringTokenizer st = new StringTokenizer(preExistingDate, "/");
 			initialMonth = st.nextToken();
 			initialDate = st.nextToken();
