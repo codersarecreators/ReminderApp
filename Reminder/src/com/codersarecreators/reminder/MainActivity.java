@@ -15,7 +15,8 @@ import android.widget.ListView;
 public class MainActivity extends Activity {
 
 	private static Context contextObj = null;
-
+	private static ArrayList<ReminderObject> listReminderObject = null;
+	private static ArrayList<String> listString = null;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -25,19 +26,13 @@ public class MainActivity extends Activity {
 		// Populate list view with Reminders
 		contextObj = this;
 		ListView listView = (ListView) findViewById(R.id.listView);
-
-		// Currently hardcoded. We have to get the list from TableReminder in
-		// database
-		ArrayList<String> reminderList = new ArrayList<String>();
-		reminderList.add("Fill Petrol");
-		reminderList.add("Wake up Sid :-)");
-		reminderList.add("Prepare weekly report");
-		reminderList.add("Today is cient call");
-		reminderList.add("Bike Servicing");
-
+		listReminderObject = new ArrayList<ReminderObject>();
 		// Pass the list of Reminders to ArrayAdapter
+		listReminderObject = DatabaseGateway.GetDbGateWay().GetTodaysReminders();
+		// writing demo code, that I anticipate, will be removed later on...
+		listString = GetListForDisplay();
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1, reminderList);
+				android.R.layout.simple_list_item_1, listString);
 		listView.setAdapter(adapter);
 
 		// Listener set on items in the list
@@ -48,7 +43,6 @@ public class MainActivity extends Activity {
 				MyToast.RaiseToast("Item in the List clicked");
 			}
 		});
-		DatabaseGateway.GetDbGateWay();
 	}
 
 	// GetContext Method
@@ -65,49 +59,53 @@ public class MainActivity extends Activity {
 
 	// Function called when clicked on + sign
 	public void displayAddReminderScreen(View view) {
-
-		// Launches new Activity AddReminder which has functionalities to add a
-		// new Reminder
+		// Launches new Activity AddReminder which has functionalities to add new Reminder
 		Intent intent = new Intent(this, AddReminder.class);
 		startActivity(intent);
-
 	}
 
 	// Function called when we click on -- sign
 	public void displayDeleteReminderDialogue(View view) {
-		// Displays a dialogue with list of reminders and checkboxes. User can
-		// select the reminders he wants to delete and click on delete
-
-		// Currently hardcoded. We have to get the list from TableReminder in
-		// database
-		ArrayList<String> reminderlist = new ArrayList<String>();
-		reminderlist.add("Fill Petrol");
-		reminderlist.add("Wake up Sid :-)");
-		reminderlist.add("Prepare weekly report");
-		reminderlist.add("Today is cient call");
-		reminderlist.add("Bike Servicing");
-
-		final Dialog deleteReminderDialogue = new Dialog(this);
-		deleteReminderDialogue.setCancelable(true);
-
-		// delete_reminder_dialogue.xml is the View which will be inflated on
-		// the dialogue
-		View deleteReminderDialogueView = getLayoutInflater().inflate(
-				R.layout.delete_reminder_dialogue, null);
-
-		ListView listview = (ListView) deleteReminderDialogueView
-				.findViewById(R.id.listView);
-
-		// Fill the list view with list of reminders and checkboxes, so need
-		// CustomAdapter
-		CustomListAdapterDeleteReminderDialog customListAdapterDeleteReminderDialog = new CustomListAdapterDeleteReminderDialog(
-				deleteReminderDialogueView.getContext(), reminderlist);
-
-		listview.setAdapter(customListAdapterDeleteReminderDialog);
-
-		deleteReminderDialogue.setContentView(deleteReminderDialogueView);
-
-		deleteReminderDialogue.show();
+		 /* what we have to do here is that, we just have to get list of reminders for today.
+		 * this has to be retrieved in the way, such that, just one call should get all the current reminders
+		 * loading only some of the reminders will also not be very heavy on the database.
+		 */
+		//listReminderObject = DatabaseGateway.GetDbGateWay().GetTodaysReminders();
+		if (listReminderObject.size() > 0) {
+			final Dialog deleteReminderDialogue = new Dialog(this);
+			deleteReminderDialogue.setCancelable(true);
+			// delete_reminder_dialogue.xml is the View which will be inflated
+			// on
+			// the dialogue
+			View deleteReminderDialogueView = getLayoutInflater().inflate(
+					R.layout.delete_reminder_dialogue, null);
+			ListView listview = (ListView) deleteReminderDialogueView
+					.findViewById(R.id.listView);
+			// Fill the list view with list of reminders and checkboxes, so need
+			// CustomAdapter
+			if(listString == null)
+			{
+				listString = GetListForDisplay();
+			}
+			CustomListAdapterDeleteReminderDialog customListAdapterDeleteReminderDialog = new CustomListAdapterDeleteReminderDialog(
+					deleteReminderDialogueView.getContext(), listString);
+			listview.setAdapter(customListAdapterDeleteReminderDialog);
+			deleteReminderDialogue.setContentView(deleteReminderDialogueView);
+			deleteReminderDialogue.show();
+		}
+		else
+		{
+			MyToast.RaiseToast("No Reminders found in the list to delete!");
+		}
 	}
-
+	
+	private ArrayList<String> GetListForDisplay()
+	{
+		ArrayList<String> listString = new ArrayList<String>();
+		for(int i=0;i<listReminderObject.size();i++)
+		{
+			listString.add(listReminderObject.get(i).getTime() + ": " + listReminderObject.get(i).getNote());
+		}
+		return listString;
+	}
 }

@@ -1,6 +1,7 @@
 package com.codersarecreators.reminder;
 
 import java.util.ArrayList;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,24 +11,38 @@ import android.widget.CheckBox;
 
 public class CustomListAdapterDeleteReminderDialog extends BaseAdapter {
 
-	private ArrayList<String> reminderNotes;
-
+	//private ArrayList<ReminderObject> listReminder;
+	private ArrayList<String> listReminderNotes = null;
 	private LayoutInflater layoutInflater;
 
 	public CustomListAdapterDeleteReminderDialog(Context context,
-			ArrayList<String> reminderNotes) {
-		this.reminderNotes = reminderNotes;
+			ArrayList<String> listString) {
+		/*if(listReminderNotes == null)
+			listReminderNotes = new ArrayList<String>();
+		if(listReminderNotes.size() > 0)
+		{
+			listReminderNotes.clear();
+		}
+		else
+		{
+			will actually never come here!
+		}
+		for(int i=0 ;i<listReminder.size();i++)
+		{
+			listReminderNotes.add(listReminder.get(i).getTime() + ": " + listReminder.get(i).getNote());
+		}*/
+		listReminderNotes = listString;
 		layoutInflater = LayoutInflater.from(context);
 	}
 
 	@Override
 	public int getCount() {
-		return reminderNotes.size();
+		return listReminderNotes.size();
 	}
 
 	@Override
 	public Object getItem(int position) {
-		return reminderNotes.get(position);
+		return listReminderNotes.get(position);
 	}
 
 	@Override
@@ -48,7 +63,7 @@ public class CustomListAdapterDeleteReminderDialog extends BaseAdapter {
 		} else {
 			holder = (ViewHolder) view.getTag();
 		}
-		holder.checkboxView.setText(reminderNotes.get(position).toString());
+		holder.checkboxView.setText(listReminderNotes.get(position).toString());
 
 		return view;
 	}
