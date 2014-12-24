@@ -1,6 +1,7 @@
 package com.codersarecreators.reminder;
 
 import java.util.ArrayList;
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -10,6 +11,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.ListView;
 
 public class MainActivity extends Activity {
@@ -107,5 +109,11 @@ public class MainActivity extends Activity {
 			listString.add(listReminderObject.get(i).getTime() + ": " + listReminderObject.get(i).getNote());
 		}
 		return listString;
+	}
+	
+	public void getSelectedItemText(View v)
+	{
+		CheckBox checkBox = (CheckBox)findViewById(v.getId());
+		MyToast.RaiseToast("CheckBox: " + checkBox.getText());
 	}
 }

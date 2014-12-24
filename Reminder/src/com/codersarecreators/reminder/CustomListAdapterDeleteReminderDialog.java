@@ -60,6 +60,7 @@ public class CustomListAdapterDeleteReminderDialog extends BaseAdapter {
 			holder.checkboxView = (CheckBox) view
 					.findViewById(R.id.delete_reminder_checkbox);
 			view.setTag(holder);
+			
 		} else {
 			holder = (ViewHolder) view.getTag();
 		}
@@ -67,6 +68,7 @@ public class CustomListAdapterDeleteReminderDialog extends BaseAdapter {
 
 		return view;
 	}
+	
 
 	static class ViewHolder {
 		CheckBox checkboxView;

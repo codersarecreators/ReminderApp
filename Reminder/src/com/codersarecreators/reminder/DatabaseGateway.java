@@ -108,8 +108,8 @@ public class DatabaseGateway extends SQLiteOpenHelper {
 		Cursor curObj = null;
 
 		ArrayList<ReminderObject> listRemObj = new ArrayList<ReminderObject>();
-		String sql = "SELECT * FROM " + TABLE_REMINDER + " WHERE Date = '"
-				+ today + "'";
+		String sql = "SELECT * FROM " + TABLE_REMINDER + " WHERE Date like '%"
+				+ today + "%'";
 		curObj = dbObj.rawQuery(sql, null);
 		if (null != curObj) {
 			if (curObj.moveToFirst()) {
@@ -127,12 +127,17 @@ public class DatabaseGateway extends SQLiteOpenHelper {
 
 	public void InsertReminder(ReminderObject reminderObj) {
 
-		String sql = "INSERT INTO " + TABLE_REMINDER + " VALUES(" + "'"
-				+ reminderObj.getId() + "'," + "'" + reminderObj.getDate()
-				+ "'," + "'" + reminderObj.getTime() + "'," + "'"
-				+ reminderObj.getNote() + "')";
-		dbObj.execSQL(sql);
-		MyToast.RaiseToast("Reminder added successfully!");
+		try {
+			String sql = "INSERT INTO " + TABLE_REMINDER + " VALUES(" + "'"
+					+ reminderObj.getId() + "'," + "'" + reminderObj.getDate()
+					+ "'," + "'" + reminderObj.getTime() + "'," + "'"
+					+ reminderObj.getNote() + "')";
+			dbObj.execSQL(sql);
+			MyToast.RaiseToast("Reminder added successfully!");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		// TODO Auto-generated method stub
 
 	}

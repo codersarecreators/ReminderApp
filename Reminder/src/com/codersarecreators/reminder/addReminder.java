@@ -21,7 +21,7 @@ import com.codersarecreators.factory.AbstractFactory;
 import com.codersarecreators.factory.ReminderConcreteFactory;
 
 public class AddReminder extends Activity {
-	
+
 	Button scheduleSMSDialogueContactsBtn, scheduleSMSDialogueDateBtn,
 			scheduleSMSDialogueTimeBtn;
 	TextView addReminderScreenDateTxtView, addReminderScreenTimeTxtView,
@@ -29,7 +29,9 @@ public class AddReminder extends Activity {
 	CheckBox addReminderScreenScheduleSMSChkBox;
 	AbstractFactory factoryObject = null;
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see android.app.Activity#onCreate(android.os.Bundle)
 	 */
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,19 +47,20 @@ public class AddReminder extends Activity {
 							boolean isChecked) {
 						if (isChecked) {
 							/*
-							 *  If Checkbox is checked, then Schedule SMS
-							 *  dialogue is displayed
+							 * If Checkbox is checked, then Schedule SMS
+							 * dialogue is displayed
 							 */
 							displayScheduleSMSDialogue(buttonView);
 						} else {
-							 /*
-							  * When Checkbox is unchecked , the schedule SMS is deleted from database.
+							/*
+							 * When Checkbox is unchecked , the schedule SMS is
+							 * deleted from database.
 							 */
 							MyToast.RaiseToast("Schedule SMS has been removed from list");
 						}
 					}
 				});
-	}//end of onCreate Method
+	}// end of onCreate Method
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -65,14 +68,14 @@ public class AddReminder extends Activity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-	
+
 	/**
 	 * @param view
-	 * @author siddharth 
-	 * Method invoked on clicking on Set Button present on the Add ReminderScreen to set the reminder
+	 * @author siddharth Method invoked on clicking on Set Button present on the
+	 *         Add ReminderScreen to set the reminder
 	 */
 	public void setReminder(View view) {
-		
+
 		EditText reminderNote = (EditText) findViewById(R.id.addReminderScreen_notesEditText);
 		TextView reminderDate = (TextView) findViewById(R.id.addReminderScreen_dateTxtView);
 		TextView reminderTime = (TextView) findViewById(R.id.addReminderScreen_timeTxtView);
@@ -83,18 +86,18 @@ public class AddReminder extends Activity {
 		}
 		factoryObject = new ReminderConcreteFactory();
 		ReminderObject reminderObj = factoryObject.CreateReminderObject(UUID
-				.randomUUID().toString(), reminderNote.getText().toString(),
-				reminderDate.getText().toString(), reminderTime.getText()
+				.randomUUID().toString(), reminderDate.getText().toString(),
+				reminderTime.getText().toString(), reminderNote.getText()
 						.toString());
 		DatabaseGateway.GetDbGateWay().InsertReminder(reminderObj);
-	//	factoryObject = new SmsF
+		// factoryObject = new SmsF
 	}
 
 	/**
 	 * @param view
-	 * @author fatema
-	 * Method invoked on clicking on Cancel button present on Add Reminder Screen. It will navigate back to the MainActivity.java i.e home screen
-	 * and reminder won't be saved.
+	 * @author fatema Method invoked on clicking on Cancel button present on Add
+	 *         Reminder Screen. It will navigate back to the MainActivity.java
+	 *         i.e home screen and reminder won't be saved.
 	 */
 	public void cancelReminder(View view) {
 		Intent intent = new Intent(AddReminder.this, MainActivity.class);
