@@ -14,6 +14,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
+import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,7 +24,7 @@ import com.codersarecreators.factory.ReminderConcreteFactory;
 public class AddReminder extends Activity {
 
 	Button scheduleSMSDialogueContactsBtn, scheduleSMSDialogueDateBtn,
-			scheduleSMSDialogueTimeBtn;
+			scheduleSMSDialogueTimeBtn, scheduleSMSDialogueSaveBtn;
 	TextView addReminderScreenDateTxtView, addReminderScreenTimeTxtView,
 			scheduleSMSDialogueDateTxtView, scheduleSMSDialogueTimeTxtView;
 	CheckBox addReminderScreenScheduleSMSChkBox;
@@ -126,8 +127,8 @@ public class AddReminder extends Activity {
 
 					@Override
 					public void onClick(View view) {
-						// Contact numbers displayed and user can select number
-						// to which he wants to send schedule sms
+						 /*Contact numbers displayed and user can select number
+						 to which he wants to send schedule sms*/
 						Toast.makeText(view.getContext(),
 								"Clicked on Contacts icon", Toast.LENGTH_LONG)
 								.show();
@@ -141,9 +142,9 @@ public class AddReminder extends Activity {
 
 			@Override
 			public void onClick(View view) {
-				// dateTextView is static text view.
-				// scheduleSMSDialogueDateTxtView is assigned to dateTextView
-				// where date will be displayed after getting selected.
+				 /*dateTextView is static text view.
+				 scheduleSMSDialogueDateTxtView is assigned to dateTextView
+				 where date will be displayed after getting selected.*/
 				DatePickerImplementation.dateTextView = scheduleSMSDialogueDateTxtView;
 				new DatePickerImplementation().displayDatePickerDialog(view);
 			}
@@ -156,33 +157,46 @@ public class AddReminder extends Activity {
 
 			@Override
 			public void onClick(View view) {
-				// Object of TimePickerImplementation class created. TextView
-				// where selected date is to be displayed is passed as parameter
-				// to the constructor
+				 /*Object of TimePickerImplementation class created. TextView
+				 where selected date is to be displayed is passed as parameter
+				 to the constructor*/
 				TimePickerImplementation.timeTextView = scheduleSMSDialogueTimeTxtView;
 				new TimePickerImplementation().displayTimePickerDialog(view);
 			}
 		});
 
+		/* On Click Listener on Save Button.
+		 * It should save the values entered in database and also display
+		 *  them dynamically on add_reminder_screen
+		 */
+				scheduleSMSDialogueSaveBtn = (Button) scheduleSMSDialog.findViewById(R.id.scheduleSMSDialogue_saveBtn);
+				scheduleSMSDialogueSaveBtn.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View view) {
+						//Work in Progress
+						TableLayout addReminderScreenScheduleSMSTable =(TableLayout)findViewById(R.id.addReminderScreen_dynamicScheduleSMSTable);
+						addReminderScreenScheduleSMSTable.setVisibility(View.VISIBLE);
+						scheduleSMSDialog.dismiss();
+					}
+				});
 		scheduleSMSDialog.show();
-
-		// End of displayScheduleSMSDialogue method
-	}
+	}// End of displayScheduleSMSDialogue method
 
 	// Method invoked on clicking on Date Button on Add Reminder Screen
 	public void selectDateOnAddReminderScreen(View view) {
-		// dateTextView is static text view. addReminderScreenDateTxtView is
-		// assigned to dateTextView where date will be displayed after getting
-		// selected.
+		 /*dateTextView is static text view. addReminderScreenDateTxtView is
+		 assigned to dateTextView where date will be displayed after getting
+		 selected.*/
 		DatePickerImplementation.dateTextView = addReminderScreenDateTxtView;
 		new DatePickerImplementation().displayDatePickerDialog(view);
 	}
 
 	// Method invoked on clicking on Time Button on Add Reminder Screen
 	public void selectTimeOnAddReminderScreen(View view) {
-		// Object of TimePickerImplementation class created. TextView where
-		// selected time is to be displayed is passed as parameter to the
-		// constructor
+		 /*Object of TimePickerImplementation class created. TextView where
+		 selected time is to be displayed is passed as parameter to the
+		 constructor*/
 		TimePickerImplementation.timeTextView = addReminderScreenTimeTxtView;
 		new TimePickerImplementation().displayTimePickerDialog(view);
 	}

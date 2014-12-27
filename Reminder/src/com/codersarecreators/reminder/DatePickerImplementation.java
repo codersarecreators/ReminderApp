@@ -11,6 +11,7 @@ import android.widget.TextView;
 public class DatePickerImplementation implements
 DatePickerDialog.OnDateSetListener {
 
+	private String dateSet;
 	private String initialMonth;
 	private String initialDate;
 	private String initialYear;
@@ -24,6 +25,15 @@ DatePickerDialog.OnDateSetListener {
 
 	}
 
+	public String getDateSet() {
+		return dateSet;
+	}
+
+
+	public void setDateSet(String dateSet) {
+		this.dateSet = dateSet;
+	}
+	
 	// Display Date Picker Dialogue on clicking on Date button on Add reminder
 	// screen
 	public void displayDatePickerDialog(View view) {
@@ -77,8 +87,12 @@ DatePickerDialog.OnDateSetListener {
 	@Override
 	public void onDateSet(DatePicker view, int year, int monthOfYear,
 			int dayOfMonth) {
+		dateSet = monthOfYear + 1 + "/" + dayOfMonth + "/" + year;
 		// Sets the date selected by user in text view
-		dateTextView.setText(monthOfYear + 1 + "/" + dayOfMonth + "/" + year);
+		dateTextView.setText(dateSet);
+		setDateSet(dateSet);
+		// Sets the date selected by user in text view
+		//dateTextView.setText(monthOfYear + 1 + "/" + dayOfMonth + "/" + year);
 	}
 
 }

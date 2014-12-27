@@ -9,19 +9,19 @@
         android:id="@+id/addReminderScreen_notesEditText"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="6dip"
+        android:layout_margin="10dip"
         android:layout_weight="1"
         android:hint="@string/addReminderScreen_notes"
-        android:lines="4"
+        android:lines="8"
         android:textColor="#FDE8D7"
-        android:textSize="20sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         android:typeface="monospace" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="6dip"
+        android:layout_margin="10dip"
         android:layout_weight="1"
         android:orientation="horizontal" >
 
@@ -29,10 +29,11 @@
             android:id="@+id/addReminderScreen_dateBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dip"
+            android:layout_margin="9dip"
             android:background="@drawable/btn_design_round"
+            android:minWidth="110dip"
             android:onClick="selectDateOnAddReminderScreen"
-            android:padding="5dip"
+            android:padding="9dip"
             android:text="@string/addReminderScreen_date" >
         </Button>
 
@@ -40,11 +41,11 @@
             android:id="@+id/addReminderScreen_dateTxtView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dip"
-            android:minWidth="20dip"
+            android:layout_margin="9dip"
+            android:minWidth="40dip"
             android:text=""
             android:textColor="#FDE8D7"
-            android:textSize="20sp"
+            android:textSize="30sp"
             android:textStyle="bold"
             android:typeface="serif" >
         </TextView>
@@ -53,7 +54,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="6dip"
+        android:layout_margin="10dip"
         android:layout_weight="1"
         android:orientation="horizontal" >
 
@@ -61,10 +62,11 @@
             android:id="@+id/addReminderScreen_timeBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dip"
+            android:layout_margin="9dip"
             android:background="@drawable/btn_design_round"
+            android:minWidth="110dip"
             android:onClick="selectTimeOnAddReminderScreen"
-            android:padding="5dip"
+            android:padding="9dip"
             android:text="@string/addReminderScreen_time" >
         </Button>
 
@@ -72,11 +74,11 @@
             android:id="@+id/addReminderScreen_timeTxtView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dip"
-            android:minWidth="20dip"
+            android:layout_margin="9dip"
+            android:minWidth="40dip"
             android:text=""
             android:textColor="#FDE8D7"
-            android:textSize="20sp"
+            android:textSize="30sp"
             android:textStyle="bold"
             android:typeface="serif" >
         </TextView>
@@ -86,10 +88,11 @@
         android:id="@+id/addReminderScreen_scheduleSMSChkBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="40dip"
+        android:layout_marginLeft="60dip"
         android:layout_weight="1"
         android:gravity="center"
         android:text="@string/addReminderScreen_scheduleSMS"
+        android:textSize="20sp"
         android:textStyle="bold|italic" />
 
     <TableLayout
@@ -165,7 +168,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:layout_margin="6dip"
+        android:layout_margin="10dip"
         android:layout_weight="0"
         android:orientation="horizontal" >
 
@@ -174,11 +177,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="5dip"
+            android:layout_margin="9dip"
             android:layout_weight="1"
             android:background="@drawable/btn_design_for_main_functions"
             android:onClick="setReminder"
-            android:padding="10dip"
+            android:padding="20dip"
             android:text="@string/addReminderScreen_setReminder" />
 
         <Button
@@ -186,11 +189,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="5dip"
+            android:layout_margin="9dip"
             android:layout_weight="1"
             android:background="@drawable/btn_design_for_main_functions"
             android:onClick="cancelReminder"
-            android:padding="10dip"
+            android:padding="20dip"
             android:text="@string/addReminderScreen_cancelReminder" />
     </LinearLayout>
 

@@ -65,7 +65,18 @@ public class MainActivity extends Activity {
 		Intent intent = new Intent(this, AddReminder.class);
 		startActivity(intent);
 	}
-
+	
+	// Delete reminder function of deleteReminderDialogue
+	public void deleteReminder(View view){
+		//System.out.println("test");
+		MyToast.RaiseToast("in delete method");
+	}
+	
+	// Returns to Home Screen from Delete Reminder Dialogue
+	public void returnToHomeScreen(View view){
+		
+	}
+	
 	// Function called when we click on -- sign
 	public void displayDeleteReminderDialogue(View view) {
 		 /* what we have to do here is that, we just have to get list of reminders for today.

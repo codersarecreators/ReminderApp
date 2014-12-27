@@ -10,6 +10,7 @@ import android.widget.TimePicker;
 public class TimePickerImplementation implements
 TimePickerDialog.OnTimeSetListener {
 
+	private String timeSet;
 	public static TextView timeTextView;
 	private TimePickerDialog timePickerDialog = null;
 	private String initialHr;
@@ -22,6 +23,13 @@ TimePickerDialog.OnTimeSetListener {
 
 	}
 
+	public String getTimeSet() {
+		return timeSet;
+	}
+
+	public void setTimeSet(String timeSet) {
+		this.timeSet = timeSet;
+	}
 	// Display Time Picker Dialogue on clicking on Time button on Add reminder
 	// screen
 	public void displayTimePickerDialog(View view) {
@@ -61,7 +69,11 @@ TimePickerDialog.OnTimeSetListener {
 
 	@Override
 	public void onTimeSet(TimePicker view, int hr, int min) {
+		timeSet = hr+" : "+min;
+		setTimeSet(timeSet);
 		// Sets the time selected by user on textview
 		timeTextView.setText(hr + " : " + min);
+		// Sets the time selected by user on textview
+		//timeTextView.setText(hr + " : " + min);
 	}
 }

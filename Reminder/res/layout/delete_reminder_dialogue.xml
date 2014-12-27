@@ -27,7 +27,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="@string/deleteReminderDialogue_delete" />
+            android:text="@string/deleteReminderDialogue_delete"
+            android:onClick="deleteReminder" />
 
         <Button
             android:id="@+id/deleteReminderDialogue_backBtn"
@@ -35,7 +36,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="@string/deleteReminderDialogue_back" />
+            android:text="@string/deleteReminderDialogue_back"
+            android:onClick="returnToHomeScreen" />
     </TableRow>
 
 </TableLayout>
