@@ -60,7 +60,6 @@ TimePickerDialog.OnTimeSetListener {
 						true);
 
 		}
-
 		timePickerDialog.show();
 
 		// End of displayTimePickerDialog dialogue
@@ -69,10 +68,10 @@ TimePickerDialog.OnTimeSetListener {
 
 	@Override
 	public void onTimeSet(TimePicker view, int hr, int min) {
-		timeSet = hr+" : "+min;
+		timeSet = hr+":"+min;
 		setTimeSet(timeSet);
 		// Sets the time selected by user on textview
-		timeTextView.setText(hr + " : " + min);
+		timeTextView.setText(hr + ":" + min);
 		// Sets the time selected by user on textview
 		//timeTextView.setText(hr + " : " + min);
 	}

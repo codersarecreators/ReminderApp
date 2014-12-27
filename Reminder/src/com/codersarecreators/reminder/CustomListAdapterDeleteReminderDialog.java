@@ -8,30 +8,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 
 public class CustomListAdapterDeleteReminderDialog extends BaseAdapter {
 
-	//private ArrayList<ReminderObject> listReminder;
-	private ArrayList<String> listReminderNotes = null;
+	private ArrayList<ReminderObject> listReminderNotes;
+	// private ArrayList<String> listReminderNotes = null;
 	private LayoutInflater layoutInflater;
 
 	public CustomListAdapterDeleteReminderDialog(Context context,
-			ArrayList<String> listString) {
-		/*if(listReminderNotes == null)
-			listReminderNotes = new ArrayList<String>();
-		if(listReminderNotes.size() > 0)
-		{
-			listReminderNotes.clear();
-		}
-		else
-		{
-			will actually never come here!
-		}
-		for(int i=0 ;i<listReminder.size();i++)
-		{
-			listReminderNotes.add(listReminder.get(i).getTime() + ": " + listReminder.get(i).getNote());
-		}*/
-		listReminderNotes = listString;
+			ArrayList<ReminderObject> listReminderObjects) {
+
+		listReminderNotes = listReminderObjects;
 		layoutInflater = LayoutInflater.from(context);
 	}
 
@@ -50,25 +39,42 @@ public class CustomListAdapterDeleteReminderDialog extends BaseAdapter {
 		return position;
 	}
 
-	public View getView(int position, View view, ViewGroup parent) {
-		ViewHolder holder;
-		if (view == null) {
+	public View getView(final int position, View view, ViewGroup parent) {
+		ViewHolder holder = null;
+
+		if (null == view) {
 			view = layoutInflater.inflate(R.layout.delete_reminder_list_item,
 					null);
+
 			holder = new ViewHolder();
 
 			holder.checkboxView = (CheckBox) view
 					.findViewById(R.id.delete_reminder_checkbox);
-			view.setTag(holder);
-			
-		} else {
-			holder = (ViewHolder) view.getTag();
+			//holder.checkboxView.setId(position);
+
+			holder.checkboxView.setText(listReminderNotes.get(position)
+					.toString());
+			holder.checkboxView
+					.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+						@Override
+						public void onCheckedChanged(CompoundButton checkBox,
+								boolean isChecked) {
+
+							if (isChecked) {
+								new MainActivity().AddReminderForDeletingById(listReminderNotes.get(position).getId());
+								MyToast.RaiseToast("Inside the checked case: " + listReminderNotes.get(position).getId());
+
+							} else {
+								new MainActivity().RemoveReminderById(listReminderNotes.get(position).getId());
+								MyToast.RaiseToast("Unchecked!");
+							}
+						}
+					});
 		}
-		holder.checkboxView.setText(listReminderNotes.get(position).toString());
 
 		return view;
 	}
-	
 
 	static class ViewHolder {
 		CheckBox checkboxView;

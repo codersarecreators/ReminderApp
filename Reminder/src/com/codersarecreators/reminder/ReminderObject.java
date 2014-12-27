@@ -30,4 +30,10 @@ public class ReminderObject {
 	public String getDate() {
 		return date;
 	}
+	
+	//override the toString method
+	public String toString()
+	{
+		return time + ", " + note;
+	}
 }

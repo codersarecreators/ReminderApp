@@ -138,7 +138,15 @@ public class DatabaseGateway extends SQLiteOpenHelper {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		// TODO Auto-generated method stub
-
+	}
+	
+	public void DeleteReminders(ArrayList<String> listId){
+		for(int i=0; i<listId.size();i++)
+		{
+			String Id = "'" + listId.get(i) + "'";
+			String sql = " DELETE FROM " + TABLE_REMINDER + " WHERE ReminderId = " + Id;
+			dbObj.execSQL(sql);
+			MyToast.RaiseToast("Deleted Reminder!");
+		}
 	}
 }
