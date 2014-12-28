@@ -117,7 +117,7 @@ public class DatabaseGateway extends SQLiteOpenHelper {
 
 					listRemObj.add(new ReminderObject(curObj.getString(0),
 							curObj.getString(1), curObj.getString(2), curObj
-									.getString(3)));
+							.getString(3)));
 
 				} while (curObj.moveToNext() != false);
 			}
@@ -139,14 +139,53 @@ public class DatabaseGateway extends SQLiteOpenHelper {
 			e.printStackTrace();
 		}
 	}
-	
-	public void DeleteReminders(ArrayList<String> listId){
-		for(int i=0; i<listId.size();i++)
-		{
+
+	public void DeleteReminders(ArrayList<String> listId) {
+		for (int i = 0; i < listId.size(); i++) {
 			String Id = "'" + listId.get(i) + "'";
-			String sql = " DELETE FROM " + TABLE_REMINDER + " WHERE ReminderId = " + Id;
+			String sql = " DELETE FROM " + TABLE_REMINDER
+					+ " WHERE ReminderId = " + Id;
 			dbObj.execSQL(sql);
 			MyToast.RaiseToast("Deleted Reminder!");
+		}
+	}
+
+	/**
+	 * Insert into SMS details table
+	 * 
+	 * @param smsObj
+	 */
+	public void InsertSMS(SmsObject smsObj) {
+
+		try {
+			String sql = "INSERT INTO " + TABLE_MESSAGESERVICE + " VALUES("
+					+ "'" + smsObj.getId() + "'," + "'" + smsObj.getDate()
+					+ "'," + "'" + smsObj.getTime() + "'," + "'"
+					+ smsObj.getText() + "'," + "'" + smsObj.getPhoneNumber()
+					+ "')";
+			dbObj.execSQL(sql);
+			MyToast.RaiseToast("SMS added successfully!");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Insert values into table which associate Reminder and SMS
+	 * 
+	 * @param reminderId
+	 * @param smsId
+	 */
+	public void InsertIntoRemSmsAssocTable(String reminderId, String smsId) {
+		try {
+			String sql = "INSERT INTO " + TABLE_REMINDER_MESSAGE_ASSOC
+					+ " VALUES(" + "'" + reminderId + "'," + "'" + smsId + "')";
+			dbObj.execSQL(sql);
+			MyToast.RaiseToast("Values added in Associate table succesfully!");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 }

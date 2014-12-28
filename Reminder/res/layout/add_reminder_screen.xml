@@ -92,75 +92,30 @@
         android:text="@string/addReminderScreen_scheduleSMS"
         android:textStyle="bold|italic" />
 
-    <TableLayout
+    <LinearLayout
         android:id="@+id/addReminderScreen_dynamicScheduleSMSTable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="invisible" >
+        android:visibility="invisible" 
+        android:orientation="horizontal">
 
-        <TableRow>
-
+        
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="20dp"
-                android:text="@string/addReminderScreen_date"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/addReminderScreen_dynamicDateTxtView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="40dp"
-                android:text="" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
-                android:text="@string/addReminderScreen_time"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/addReminderScreen_dynamicTimeTxtView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
-                android:text="@string/addReminderScreen_notes"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/addReminderScreen_dynamicMessageTxtView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
-                android:text="@string/addReminderScreen_contactNo"
+                android:text="@string/addReminderScreen_recipient"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/addReminderScreen_dynamicContactNoTxtView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="" />
-        </TableRow>
-    </TableLayout>
-
+                android:text=""
+                android:clickable="true"
+                android:onClick="editScheduleSMS" />
+       
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

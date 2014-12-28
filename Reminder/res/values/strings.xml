@@ -21,6 +21,7 @@
     <string name="deleteReminderDialogue_delete">Delete</string>
 	<string name="deleteReminderDialogue_back">Back</string>
 	<string name="addReminderScreen_contactNo">Contacts</string>
+	<string name="addReminderScreen_recipient">Recipients</string>
     
     
 </resources>
